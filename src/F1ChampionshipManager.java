@@ -1,5 +1,6 @@
 
 import java.io.Serializable;
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Comparator;
 
@@ -87,9 +88,10 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
     }
 
     @Override
-    public void addToChampionship(Formula1Driver driver) {
-        if (!teamsList.contains(driver.getTeamName()) && !driverList.contains(driver)) {
-            driverList.add(driver);
+    public void addToChampionship(Driver driver) {
+        Formula1Driver d = (Formula1Driver) driver;
+        if (!teamsList.contains(d.getTeamName()) && !driverList.contains(d)) {
+            driverList.add(d);
         }
         updateTeams();
 //        driverList.sort(new sortByPoints());
@@ -108,11 +110,15 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
         updateTeams();
     }
     @Override
-    public void changeDriver(Formula1Driver oldDriver,Formula1Driver newDriver) {
+    public void changeDriver(Driver oldDriver,Driver newDriver) {
+        Formula1Driver od = (Formula1Driver) oldDriver;
+        Formula1Driver nd = (Formula1Driver) newDriver;
+
+
         String teamName = oldDriver.getTeamName();
         removeFromChampionship(oldDriver.getDriverName());
-        newDriver.setTeamName(teamName);
-        addToChampionship(newDriver);
+        od.setTeamName(teamName);
+        addToChampionship(nd);
 
 
     }

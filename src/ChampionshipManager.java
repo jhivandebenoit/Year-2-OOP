@@ -1,8 +1,8 @@
 public interface ChampionshipManager {
 
-    void addToChampionship(Formula1Driver driver);
+    void addToChampionship(Driver driver);
     void removeFromChampionship(String driverName);
-    void changeDriver(Formula1Driver oldDriver,Formula1Driver newDriver);
+    void changeDriver(Driver oldDriver,Driver newDriver);
     boolean displayStatisticsOfDriver(String driverName);
     void displayChampionshipStatistics();
 

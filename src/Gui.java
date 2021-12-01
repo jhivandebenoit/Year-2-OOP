@@ -36,10 +36,10 @@ public class Gui extends JFrame {
             @Override
             public Class<?> getColumnClass(int columnIndex) {
                 switch(columnIndex) {
-                    case 2:case 3:case 4:case 5:case 6: case 8: case 9:
-                        return Integer.class;
-                    default:
+                    case 0:case 1:case 7: case 10:
                         return String.class;
+                    default:
+                        return Integer.class;
 
                 }
             }
@@ -117,7 +117,7 @@ public class Gui extends JFrame {
         });
 
         button3.addActionListener(e -> newFilter(input,sorter));
-//        input.addActionListener(e -> System.out.println("works"));
+//        input.addActionListener(l -> System.out.println("works"));
 
 
     }
@@ -174,7 +174,8 @@ public class Gui extends JFrame {
     public void updateTable(DefaultTableModel tableModel) {
         for (Formula1Driver f1 : Main.F1C.getDriverList()) {
             tableModel.addRow(new Object[] {
-                    f1.getDriverName(),f1.getTeamName(),
+                    f1.getDriverName(),
+                    f1.getTeamName(),
                     f1.getFirstPositions(),
                     f1.getSecondPositions(),
                     f1.getThirdPositions(),

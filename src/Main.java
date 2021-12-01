@@ -190,11 +190,11 @@ public class Main {
             scanner.next();
         }
         int num = scanner.nextInt();
-        if (num < 1 ) {
+        if (num > 30 ) {
             System.out.println("Enter number in range.");
         }
         scanner.nextLine();
-        return num <= 30 ? num : intVal();
+        return num >= 1 ? num : intVal();
     }
     //month validation
     public static int monthVal() {
@@ -203,11 +203,11 @@ public class Main {
             scanner.next();
         }
         int num = scanner.nextInt();
-        if (num < 1 ) {
+        if (num >12 ) {
             System.out.println("Enter number in range.");
         }
         scanner.nextLine();
-        return num <= 12 ? num : intVal();
+        return num >= 1 ? num : intVal();
     }
 
 
