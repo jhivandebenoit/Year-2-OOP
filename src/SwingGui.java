@@ -44,7 +44,6 @@ public class SwingGui extends JFrame{
         DefaultTableModel tableModel;
         //          Table Config
         String[] columns = new String[]{"Name","Team Name","First Positions","Second Positions","Third Postions","Total Points","Total Races","Location","Height","Age","Country of Origin"};
-//        Object[][] data = {{"John","Jeep","1","2","3","50","4","Sri lanka","180","20","Sri lanka"}};
         Object[][] data = {};
 
         tableModel = new DefaultTableModel(data,columns);

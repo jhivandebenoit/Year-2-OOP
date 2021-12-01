@@ -20,6 +20,7 @@ public class Formula1Driver extends Driver implements Serializable {
 
     public void setNumberOfPoints(int position) {
         int points=0;
+        numberOfRaces++;
         switch (position) {
             case 1:
                 points = 25;
