@@ -3,11 +3,8 @@ import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.concurrent.ThreadLocalRandom;
 
 public class Gui extends JFrame {
     public Gui(String title) {
@@ -125,7 +122,7 @@ public class Gui extends JFrame {
         RowFilter<DefaultTableModel, Object> rf = null;
         //If current string doesn't parse, it doesn't  update.
         try {
-            rf = RowFilter.regexFilter(TF1.getText(),0);
+            rf = RowFilter.regexFilter(TF1.getText().toLowerCase(),0);
         } catch (java.util.regex.PatternSyntaxException e) {
             return;
         }
@@ -174,17 +171,17 @@ public class Gui extends JFrame {
     public void updateTable(DefaultTableModel tableModel) {
         for (Formula1Driver f1 : Main.F1C.getDriverList()) {
             tableModel.addRow(new Object[] {
-                    f1.getDriverName(),
-                    f1.getTeamName(),
+                    f1.getDriverName().toLowerCase(),
+                    f1.getTeamName().toLowerCase(),
                     f1.getFirstPositions(),
                     f1.getSecondPositions(),
                     f1.getThirdPositions(),
                     f1.getNumberOfPoints(),
                     f1.getNumberOfRaces(),
-                    f1.getLocation(),
+                    f1.getLocation().toLowerCase(),
                     f1.getHeight(),
                     f1.getAge(),
-                    f1.getCountryOfOrigin()
+                    f1.getCountryOfOrigin().toLowerCase()
             });
         }
     }

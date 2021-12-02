@@ -97,7 +97,6 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
 //        driverList.sort(new sortByPoints());
     }
 
-
     @Override
     public void removeFromChampionship(String driverName) {
 //        ListIterator<Formula1Driver> iterator = driverList.listIterator();
@@ -106,6 +105,8 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
 //                iterator.remove();
 //            }
 //        }
+
+
         driverList.removeIf(d -> d.getDriverName().equalsIgnoreCase(driverName));
         updateTeams();
     }
@@ -113,14 +114,10 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
     public void changeDriver(Driver oldDriver,Driver newDriver) {
         Formula1Driver od = (Formula1Driver) oldDriver;
         Formula1Driver nd = (Formula1Driver) newDriver;
-
-
         String teamName = oldDriver.getTeamName();
         removeFromChampionship(oldDriver.getDriverName());
         od.setTeamName(teamName);
         addToChampionship(nd);
-
-
     }
 
     @Override
@@ -149,10 +146,10 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
 
         ArrayList<Formula1Driver> clone = new ArrayList<>(driverList);
         clone.sort(new sortByPoints());
-        System.out.format("%-30s%-15s%-15s\n","Name","TeamName","NumberOfPoints");
+        System.out.format("%-30s%-25s%-25s\n","Name","TeamName","NumberOfPoints");
         for (Formula1Driver d : clone) {
 
-            System.out.format("%-30s%-15s%-15s\n",d.getDriverName(),d.getTeamName(),d.getNumberOfPoints());
+            System.out.format("%-30s%-25s%-25s\n",d.getDriverName(),d.getTeamName(),d.getNumberOfPoints());
 //            System.out.println("Name: " + d.getDriverName() + "|TeamName: " + d.getTeamName() + "|NumberOfPoints:" + d.getNumberOfPoints());
         }
     }
