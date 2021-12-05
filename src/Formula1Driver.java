@@ -78,6 +78,34 @@ public class Formula1Driver extends Driver implements Serializable {
     public int getNumberOfRaces() {
         return numberOfRaces;
     }
+//    public Object[] formatForRace(){
+//        return new Object[] {
+//                this.getDriverName().toLowerCase(),
+//                this.getTeamName().toLowerCase()};
+//    }
+    public Object[] formatForDriver() {
+        return new Object[] {
+                this.getDriverName().toLowerCase(),
+                this.getTeamName().toLowerCase(),
+                this.getFirstPositions(),
+                this.getSecondPositions(),
+                this.getThirdPositions(),
+                this.getNumberOfPoints(),
+                this.getNumberOfRaces(),
+                this.getLocation().toLowerCase(),
+                this.getHeight(),
+                this.getAge(),
+                this.getCountryOfOrigin().toLowerCase()
+        };
+    }
+    
 
-
+    @Override
+    public String toString() {
+        return "Formula1Driver{" +
+                "Name" + super.getDriverName() +
+                ", numberOfPoints=" + numberOfPoints +
+                ", numberOfRaces=" + numberOfRaces +
+                "}";
+    }
 }

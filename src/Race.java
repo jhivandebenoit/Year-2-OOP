@@ -1,8 +1,6 @@
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 
 public class Race implements Serializable {
     private LocalDate raceDate;
@@ -15,10 +13,6 @@ public class Race implements Serializable {
 
 
     }
-//    public Race(ArrayList<Formula1Driver> drivers) {
-//        this.racePositions = new ArrayList<>();
-//        generateRacePositions(drivers);
-//    }
 
     public LocalDate getRaceDate() {
         return raceDate;
@@ -29,24 +23,12 @@ public class Race implements Serializable {
     }
 
     public ArrayList<Formula1Driver> getRacePositions() {
-        return racePositions;
+        return this.racePositions;
     }
 
     public void addRacePositions(Formula1Driver racePosition) {
         this.racePositions.add(racePosition);
 
     }
-//    public void generateRacePositions(ArrayList<Formula1Driver> drivers) {
-//        ArrayList<String> repeatCheck = new ArrayList<>();
-//        for (int i = 0;i<drivers.size();i++) {
-//            repeatCheck.add(Integer.toString(i+1));
-//        }
-//        Collections.shuffle(repeatCheck);
-//        for (int j = 0; j<drivers.size();j++) {
-//            this.addRacePositions(new String[] {drivers.get(j).getDriverName(),repeatCheck.get(j)});
-//
-//        }
-//
-//
-//    }
+
 }

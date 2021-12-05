@@ -19,7 +19,7 @@ public class Gui extends JFrame {
         //Init
         F1C = F1manager;
         JButton button1 = new JButton("Generate Race");
-        JButton button2 = new JButton("Generate Race MOd");
+        JButton button2 = new JButton("Generate Race With Intial positions");
         JButton button3 = new JButton("Search By Name");
         JTextField input = new JTextField();
         JTable mainTable;
@@ -92,6 +92,11 @@ public class Gui extends JFrame {
         ArrayList<Race> races = F1C.getRaceList();
         JPanel racePanel = new JPanel();
         racePanel.setLayout(new FlowLayout());
+        String[] raceColumn = new String[]{"Race Date"};
+        DefaultTableModel raceModel = new DefaultTableModel(raceColumn,0);
+        JTable raceDateTable = new JTable(raceModel);
+        updateRaceTable(raceModel);
+        racePanel.add(new JScrollPane(raceDateTable));
 
 //        // Race checkbox
 //        String[] raceDateStrings = new String[races.size()];
@@ -112,12 +117,16 @@ public class Gui extends JFrame {
         button1.addActionListener(e -> {
             F1C.addRace(newRace());
             tableModel.setRowCount(0);
+            raceModel.setRowCount(0);
             updateTable(tableModel);
+            updateRaceTable(raceModel);
         });
         button2.addActionListener(e -> {
             F1C.addRace(newGenRace());
             tableModel.setRowCount(0);
+            raceModel.setRowCount(0);
             updateTable(tableModel);
+            updateRaceTable(raceModel);
         });
 
         button3.addActionListener(e -> newFilter(input,sorter));
@@ -156,41 +165,47 @@ public class Gui extends JFrame {
         Collections.shuffle(drivers);
         Race race = new Race(randomDate());
         int winningNum = rAndBetween(0,racePool());
-        if (winningNum<40) {
-            race.addRacePositions(drivers.get(0));
+        int winningIndex;
+        if (winningNum<=40) {
+
+            winningIndex = 0;
         }
-        else if (winningNum < 70) {
-            race.addRacePositions(drivers.get(1));
+        else if (winningNum <= 70) {
+            winningIndex = 1;
         }
-        else if (winningNum < 80) {
-            race.addRacePositions(drivers.get(2));
+        else if (winningNum <= 80) {
+            winningIndex = 2;
         }
-        else if (winningNum < 90) {
-            race.addRacePositions(drivers.get(3));
+        else if (winningNum <= 90) {
+            winningIndex = 3;
         }
-        else if (winningNum < 92) {
-            race.addRacePositions(drivers.get(4));
+        else if (winningNum <= 92) {
+            winningIndex = 4;
         }
-        else if (winningNum < 94) {
-            race.addRacePositions(drivers.get(5));
+        else if (winningNum <= 94) {
+            winningIndex = 5;
         }
-        else if (winningNum < 96) {
-            race.addRacePositions(drivers.get(6));
+        else if (winningNum <= 96) {
+            winningIndex = 6;
         }
-        else if (winningNum < 98) {
-            race.addRacePositions(drivers.get(7));
+        else if (winningNum <= 98) {
+            winningIndex = 7;
         }
         else {
-            race.addRacePositions(drivers.get(8));
+            winningIndex = 8;
         }
+
+        race.addRacePositions(drivers.get(winningIndex));
         ArrayList<Integer> repeatCheck = new ArrayList<>();
         for (int i = 0;i<drivers.size();i++) {
             repeatCheck.add(i);
         }
         Collections.shuffle(repeatCheck);
         for (int j = 0; j<drivers.size();j++) {
-            race.addRacePositions(drivers.get(repeatCheck.get(j)));
-
+            if (j==winningIndex) {
+                continue;
+            }
+            race.addRacePositions(drivers.get(j));
         }
 
         return race;
@@ -220,43 +235,39 @@ public class Gui extends JFrame {
     public static int rAndBetween(int start, int end) {
         return start + (int)Math.round(Math.random() * (end - start));
     }
+    public void updateRaceTable(DefaultTableModel tableModel) {
+        F1C.sortRaces();
+        for (Race race : F1C.getRaceList()) {
+            tableModel.addRow(new Object[] {
+                    race.getRaceDate()
+            });
+        }
+    }
 
     public void updateTable(DefaultTableModel tableModel) {
         F1C.sortDescPoints();
         for (Formula1Driver f1 : F1C.getDriverList()) {
-            tableModel.addRow(new Object[] {
-                    f1.getDriverName().toLowerCase(),
-                    f1.getTeamName().toLowerCase(),
-                    f1.getFirstPositions(),
-                    f1.getSecondPositions(),
-                    f1.getThirdPositions(),
-                    f1.getNumberOfPoints(),
-                    f1.getNumberOfRaces(),
-                    f1.getLocation().toLowerCase(),
-                    f1.getHeight(),
-                    f1.getAge(),
-                    f1.getCountryOfOrigin().toLowerCase()
-            });
+            tableModel.addRow(f1.formatForDriver());
         }
     }
-    public double probabilityOnPosition(int position) {
-        double num=0;
-        switch(position) {
-            case 1:
-                num=0.4d;
-                break;
-            case 2:
-                num=0.3d;
-                break;
-            case 3: case 4:
-                num=0.1d;
-                break;
-            case 5:case 6:case 7:case 8:case 9:
-                num=0.02d;
-                break;
-        }
-        return num;
-    }
+//    public double probabilityOnPosition(int position) {
+//        double num=0;
+//        switch(position) {
+//            case 1:
+//                num=0.4d;
+//                break;
+//            case 2:
+//                num=0.3d;
+//                break;
+//            case 3: case 4:
+//                num=0.1d;
+//                break;
+//            case 5:case 6:case 7:case 8:case 9:
+//                num=0.02d;
+//                break;
+//        }
+//        return num;
+//    }
     public int racePool() {
         int num =F1C.getDriverList().size();
         int out;
