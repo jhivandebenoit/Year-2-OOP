@@ -7,7 +7,8 @@ import java.time.LocalDate;
 import java.util.*;
 
 public class Gui extends JFrame {
-    public Gui(String title) {
+    private F1ChampionshipManager F1C;
+    public Gui(String title,F1ChampionshipManager F1manager) {
         super(title);
         this.setSize(1200,800);
         this.setLocation(100,100);
@@ -15,7 +16,7 @@ public class Gui extends JFrame {
 
         //Drivers code
         //Init
-
+        F1C = F1manager;
         JButton button1 = new JButton("Generate Race");
         JButton button2 = new JButton("Generate Race MOd");
         JButton button3 = new JButton("Search By Name");
@@ -87,7 +88,7 @@ public class Gui extends JFrame {
 
 
         // Race data code
-        ArrayList<Race> races = Main.F1C.getRaceList();
+        ArrayList<Race> races = F1C.getRaceList();
         JPanel racePanel = new JPanel();
         racePanel.setLayout(new FlowLayout());
 
@@ -108,7 +109,7 @@ public class Gui extends JFrame {
 
 //        Onclick
         button1.addActionListener(e -> {
-            Main.F1C.addRace(newRace());
+            F1C.addRace(newRace());
             tableModel.setRowCount(0);
             updateTable(tableModel);
         });
@@ -130,7 +131,7 @@ public class Gui extends JFrame {
     }
     public Race newRace() {
 
-            ArrayList<Formula1Driver> drivers = Main.F1C.getDriverList();
+            ArrayList<Formula1Driver> drivers = F1C.getDriverList();
         Race race = new Race(randomDate());
         ArrayList<String> repeatCheck = new ArrayList<>();
         for (int i = 0;i<drivers.size();i++) {
@@ -146,15 +147,24 @@ public class Gui extends JFrame {
     }
     public void newGenRace() {
 
-        ArrayList<Formula1Driver> drivers = new ArrayList<>(Main.F1C.getDriverList());
+        ArrayList<Formula1Driver> drivers = new ArrayList<>(F1C.getDriverList());
         Collections.shuffle(drivers);
         Race race = new Race(randomDate());
         ArrayList<Object[]> startingPositons = new ArrayList<>();
+        double sum = 0;
 
+//        for (int i = 0;i<drivers.size();i++) {
+//            startingPositons.add(new Object[]{(i+1),drivers.get(i).getDriverName()});
+//        }
         for (int i = 0;i<drivers.size();i++) {
-            startingPositons.add(new Object[]{(i+1),drivers.get(i).getDriverName()});
+            sum += i*probabilityOnPosition(i+1);
         }
-        System.out.println(Arrays.toString(startingPositons.get(0)));
+//        for (int j=0;j<drivers.size();j++) {
+//            race.add
+//        }
+//        race.addRacePositions(winner);
+
+
 
 
     }
@@ -169,8 +179,8 @@ public class Gui extends JFrame {
     }
 
     public void updateTable(DefaultTableModel tableModel) {
-        Main.F1C.sortDescPoints();
-        for (Formula1Driver f1 : Main.F1C.getDriverList()) {
+        F1C.sortDescPoints();
+        for (Formula1Driver f1 : F1C.getDriverList()) {
             tableModel.addRow(new Object[] {
                     f1.getDriverName().toLowerCase(),
                     f1.getTeamName().toLowerCase(),

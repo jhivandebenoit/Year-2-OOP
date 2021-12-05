@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class Main {
     private static Scanner scanner = new Scanner(System.in);
-    protected static F1ChampionshipManager F1C = new F1ChampionshipManager();
+    private static F1ChampionshipManager F1C = new F1ChampionshipManager();
     public static void main(String[] args)  {
         String input;
         readFromFile();
@@ -63,7 +63,7 @@ public class Main {
                 case "7": case "G":
 //                   SwingGui gui =  new SwingGui("Formula 1 Championship Manager", F1C);
                     F1C.displayRaces();
-                    Gui gui =  new Gui("Formula 1 Championship Manager");
+                    Gui gui =  new Gui("Formula 1 Championship Manager",F1C);
                    gui.setVisible(true);
                     break;
                 case "8": case "h":
@@ -76,7 +76,6 @@ public class Main {
                     break;
                 case "M": case "MENU":
                     F1C.menu();
-                    scanner.nextLine();
                 default:
                     System.out.println("Enter a valid input");
             }
