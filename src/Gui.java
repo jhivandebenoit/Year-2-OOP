@@ -169,6 +169,7 @@ public class Gui extends JFrame {
     }
 
     public void updateTable(DefaultTableModel tableModel) {
+        Main.F1C.sortDescPoints();
         for (Formula1Driver f1 : Main.F1C.getDriverList()) {
             tableModel.addRow(new Object[] {
                     f1.getDriverName().toLowerCase(),

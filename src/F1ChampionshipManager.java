@@ -2,6 +2,7 @@
 import java.io.Serializable;
 import java.text.Normalizer;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Comparator;
 
 
@@ -25,6 +26,9 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
         driverList = new ArrayList<>();
         teamsList = new ArrayList<>();
         races = new ArrayList<>();
+    }
+    public void sortDescPoints() {
+        driverList.sort(new sortByPoints());
     }
 
     public void menu() {
@@ -55,7 +59,6 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
 //            System.out.println("Name: " + driver.getDriverName() + "| " +count);
             count++;
         }
-        System.out.println("Input number to select driver: ");
     }
     public void assignPoints(Race race) {
         for (String[] racer : race.getRacePositions()) {
@@ -122,7 +125,7 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
 
     @Override
     public boolean displayStatisticsOfDriver(String driverName) {
-
+        driverList.sort(new sortByPoints());
         Formula1Driver d = findDriver(driverName);
         if (!(d==null)) {
             System.out.format("%-30s%-25s%-25s%-25s%-25s\n","Driver Name","Team Name","First Positions","Second Positions", "Third Positions");
