@@ -58,7 +58,11 @@ public class Main {
                     break;
 
                 case "6": case "F":
-                    F1C.addRace(newRace());
+                    Race newRace = newRace();
+                    if (!(newRace==null)) {
+                        F1C.addRace(newRace);
+                    }
+
                     break;
                 case "7": case "G":
 //                   SwingGui gui =  new SwingGui("Formula 1 Championship Manager", F1C);
@@ -129,8 +133,15 @@ public class Main {
 
             System.out.println("Enter drivers name at place: " + i);
             String name =scanner.nextLine();
+            Formula1Driver driver = F1C.findDriver(name);
+            if (!(driver==null)) {
+                race.addRacePositions(driver);
+            }
+            else {
+                System.out.println("Entered driverName isn't a valid driver, Exiting");
+                return null;
+            }
 
-            race.addRacePositions(new String[] {name,Integer.toString(i)});
         }
         return race;
 

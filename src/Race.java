@@ -6,7 +6,7 @@ import java.util.Collections;
 
 public class Race implements Serializable {
     private LocalDate raceDate;
-    private ArrayList<String[]> racePositions;
+    private ArrayList<Formula1Driver> racePositions;
     private static final long serialVersionUID = 4L;
 
     public Race(LocalDate raceDate) {
@@ -28,11 +28,11 @@ public class Race implements Serializable {
         this.raceDate = raceDate;
     }
 
-    public ArrayList<String[]> getRacePositions() {
+    public ArrayList<Formula1Driver> getRacePositions() {
         return racePositions;
     }
 
-    public void addRacePositions(String[] racePosition) {
+    public void addRacePositions(Formula1Driver racePosition) {
         this.racePositions.add(racePosition);
 
     }

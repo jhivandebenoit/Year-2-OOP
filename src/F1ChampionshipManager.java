@@ -61,8 +61,8 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
         }
     }
     public void assignPoints(Race race) {
-        for (String[] racer : race.getRacePositions()) {
-            findDriver(racer[0]).setNumberOfPoints(Integer.parseInt(racer[1]));
+        for (Formula1Driver racer : race.getRacePositions()) {
+            racer.setNumberOfPoints(race.getRacePositions().indexOf(racer)+1);
         }
     }
 

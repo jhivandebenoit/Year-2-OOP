@@ -5,6 +5,7 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.List;
 
 public class Gui extends JFrame {
     private F1ChampionshipManager F1C;
@@ -113,6 +114,11 @@ public class Gui extends JFrame {
             tableModel.setRowCount(0);
             updateTable(tableModel);
         });
+        button2.addActionListener(e -> {
+            F1C.addRace(newGenRace());
+            tableModel.setRowCount(0);
+            updateTable(tableModel);
+        });
 
         button3.addActionListener(e -> newFilter(input,sorter));
 //        input.addActionListener(l -> System.out.println("works"));
@@ -133,44 +139,81 @@ public class Gui extends JFrame {
 
             ArrayList<Formula1Driver> drivers = F1C.getDriverList();
         Race race = new Race(randomDate());
-        ArrayList<String> repeatCheck = new ArrayList<>();
+        ArrayList<Integer> repeatCheck = new ArrayList<>();
         for (int i = 0;i<drivers.size();i++) {
-            repeatCheck.add(Integer.toString(i+1));
+            repeatCheck.add(i);
         }
         Collections.shuffle(repeatCheck);
         for (int j = 0; j<drivers.size();j++) {
-//            this.addRacePositions(new String[] {drivers.get(j).getDriverName(),repeatCheck.get(j)});
-            race.addRacePositions(new String[] {drivers.get(j).getDriverName(),repeatCheck.get(j)});
+            race.addRacePositions(drivers.get(repeatCheck.get(j)));
 
         }
         return race;
     }
-    public void newGenRace() {
+    public Race newGenRace() {
 
         ArrayList<Formula1Driver> drivers = new ArrayList<>(F1C.getDriverList());
         Collections.shuffle(drivers);
         Race race = new Race(randomDate());
-        ArrayList<Object[]> startingPositons = new ArrayList<>();
-        double sum = 0;
-
-//        for (int i = 0;i<drivers.size();i++) {
-//            startingPositons.add(new Object[]{(i+1),drivers.get(i).getDriverName()});
-//        }
-        for (int i = 0;i<drivers.size();i++) {
-            sum += i*probabilityOnPosition(i+1);
+        int winningNum = rAndBetween(0,racePool());
+        if (winningNum<40) {
+            race.addRacePositions(drivers.get(0));
         }
-//        for (int j=0;j<drivers.size();j++) {
-//            race.add
-//        }
-//        race.addRacePositions(winner);
+        else if (winningNum < 70) {
+            race.addRacePositions(drivers.get(1));
+        }
+        else if (winningNum < 80) {
+            race.addRacePositions(drivers.get(2));
+        }
+        else if (winningNum < 90) {
+            race.addRacePositions(drivers.get(3));
+        }
+        else if (winningNum < 92) {
+            race.addRacePositions(drivers.get(4));
+        }
+        else if (winningNum < 94) {
+            race.addRacePositions(drivers.get(5));
+        }
+        else if (winningNum < 96) {
+            race.addRacePositions(drivers.get(6));
+        }
+        else if (winningNum < 98) {
+            race.addRacePositions(drivers.get(7));
+        }
+        else {
+            race.addRacePositions(drivers.get(8));
+        }
+        ArrayList<Integer> repeatCheck = new ArrayList<>();
+        for (int i = 0;i<drivers.size();i++) {
+            repeatCheck.add(i);
+        }
+        Collections.shuffle(repeatCheck);
+        for (int j = 0; j<drivers.size();j++) {
+            race.addRacePositions(drivers.get(repeatCheck.get(j)));
 
+        }
 
+        return race;
 
 
     }
     public  LocalDate randomDate() {
+        int year = rAndBetween(2000,2021);
+        int month = rAndBetween(1,12);
+        int day;
+        if (month==2) {
+            if (isLeapYear(year)) {
+                day = rAndBetween(1,28);
+            }
+            else {
+                day = rAndBetween(1,29);
+            }
+        }
+        else {
+            day = rAndBetween(1,30);
+        }
 
-        return  LocalDate.of(rAndBetween(2000,2021),rAndBetween(1,12),rAndBetween(1,30));
+        return  LocalDate.of(year,month,day);
 
     }
 
@@ -214,8 +257,54 @@ public class Gui extends JFrame {
         }
         return num;
     }
+    public int racePool() {
+        int num =F1C.getDriverList().size();
+        int out;
+        switch(num) {
+            case 1:
+                out = 40;
+                break;
+            case 2:
+                out = 70;
+                break;
+            case 3:
+                out = 80;
+                break;
+            case 4:
+                out = 90;
+                break;
+            case 5:
+                out = 92;
+                break;
+            case 6:
+                out = 94;
+                break;
+            case 7:
+                out = 96;
+                break;
+            case 8:
+                out = 98;
+                break;
+            default:
+                out = 100;
+                break;
 
-//    public StringFor
+        }
+        return out;
+    }
+    public static boolean isLeapYear(int year) {
+        if (year < 1 || year > 9999) {
+            return false;
+        }
+        else if (year % 4 != 0 ) {
+            return false;
+        }
+        else if (year % 100 != 0) {
+            return true;
+        }
+        else return year % 400 == 0;
+    }
+
 
 
 
