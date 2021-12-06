@@ -53,6 +53,9 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
             System.out.println();
         }
     }
+    public boolean isDriver(String name) {
+        return findDriver(name) !=null;
+    }
     public void displayDrivers() {
         System.out.format("%-30s%-25s\n","Driver Name","Team Name");
         for (Formula1Driver driver : driverList) {
@@ -117,9 +120,9 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
     public void changeDriver(Driver oldDriver,Driver newDriver) {
         Formula1Driver od = (Formula1Driver) oldDriver;
         Formula1Driver nd = (Formula1Driver) newDriver;
-        String teamName = oldDriver.getTeamName();
+//        String teamName = oldDriver.getTeamName();
         removeFromChampionship(oldDriver.getDriverName());
-        od.setTeamName(teamName);
+//        nd.setTeamName(teamName);
         addToChampionship(nd);
     }
 
@@ -166,7 +169,11 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
 
     static class sortByPoints implements Comparator<Formula1Driver> {
         public int compare(Formula1Driver a, Formula1Driver b) {
-            return b.getNumberOfPoints()-a.getNumberOfPoints();
+            int difference = b.getNumberOfPoints()-a.getNumberOfPoints();
+            if (difference==0) {
+                return b.getNumberOfRaces()-a.getNumberOfRaces();
+            }
+            return difference ;
         }
     }
 

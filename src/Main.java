@@ -38,8 +38,13 @@ public class Main {
                     String driverName = scanner.nextLine();
                     Formula1Driver oldDriver = F1C.findDriver(driverName);
                     if (oldDriver != null) {
-                        Formula1Driver newDriver = newF1Driver();
-                        F1C.changeDriver(oldDriver,newDriver);
+                        Formula1Driver newDriver = newF1Driver(oldDriver.getTeamName());
+                        if (F1C.isDriver(newDriver.getDriverName())) {
+                            F1C.changeDriver(oldDriver,newDriver);
+                            break;
+                        }
+                        System.out.println(newDriver.getDriverName() + " is already a driver");
+
                     }
                     else {
                         System.out.println("Driver not in championship");
@@ -99,6 +104,23 @@ public class Main {
         String location = scanner.nextLine();
         System.out.println("Enter Drivers Team name");
         String teamName = scanner.nextLine();
+        System.out.println("Enter drivers height");
+        int height = intVal();
+        System.out.println("Enter Drivers age");
+        int age = intVal();
+        System.out.println("Enter Country of Origin");
+        String CoV = scanner.nextLine();
+        return new Formula1Driver(driverName,location,
+                teamName,height,age,CoV);
+
+
+
+    }
+    private static Formula1Driver newF1Driver(String teamName) {
+        System.out.println("Enter Driver Name");
+        String driverName = scanner.nextLine();
+        System.out.println("Enter Drivers location");
+        String location = scanner.nextLine();
         System.out.println("Enter drivers height");
         int height = intVal();
         System.out.println("Enter Drivers age");
