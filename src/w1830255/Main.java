@@ -31,6 +31,7 @@ public class Main {
                         continue;
                     }
                     F1C.removeFromChampionship(imp);
+                    saveToFile(F1C);
                     break;
                 case "3": case "C":
                     F1C.displayDrivers();
@@ -41,6 +42,7 @@ public class Main {
                         Formula1Driver newDriver = newF1Driver(oldDriver.getTeamName());
                         if (F1C.isDriver(newDriver.getDriverName())) {
                             F1C.changeDriver(oldDriver,newDriver);
+                            saveToFile(F1C);
                             break;
                         }
                         System.out.println(newDriver.getDriverName() + " is already a driver");
@@ -73,6 +75,7 @@ public class Main {
                     if (!(newRace==null)) {
                         F1C.addRace(newRace);
                     }
+                    saveToFile(F1C);
 
                     break;
                 case "7": case "G":
