@@ -33,11 +33,17 @@ public class Main {
                     F1C.removeFromChampionship(imp);
                     break;
                 case "3": case "C":
+                    F1C.displayDrivers();
                     System.out.println("Name of driver with you wish to replace.");
                     String driverName = scanner.nextLine();
                     Formula1Driver oldDriver = F1C.findDriver(driverName);
-                    Formula1Driver newDriver = newF1Driver();
-                    F1C.changeDriver(oldDriver,newDriver);
+                    if (oldDriver != null) {
+                        Formula1Driver newDriver = newF1Driver();
+                        F1C.changeDriver(oldDriver,newDriver);
+                    }
+                    else {
+                        System.out.println("Driver not in championship");
+                    }
                     break;
                 case "4": case "D":
                     F1C.displayDrivers();
@@ -99,18 +105,8 @@ public class Main {
         int age = intVal();
         System.out.println("Enter Country of Origin");
         String CoV = scanner.nextLine();
-        System.out.println("Enter first positions");
-        int fPositions = intVal();
-        System.out.println("Enter second positions");
-        int sPositions = intVal();
-        System.out.println("Enter third positions");
-        int tPositions = intVal();
-        System.out.println("Enter number of points");
-        int noOfPoints = intVal();
-        System.out.println("Enter number of races");
-        int noOfRaces = intVal();
         return new Formula1Driver(driverName,location,
-                teamName,height,age,CoV,fPositions,sPositions,tPositions,noOfPoints,noOfRaces);
+                teamName,height,age,CoV);
 
 
 
@@ -138,7 +134,7 @@ public class Main {
                 race.addRacePositions(driver);
             }
             else {
-                System.out.println("Entered driverName isn't a valid driver, Exiting");
+                System.out.println("Entered driver name isn't a valid driver, Exiting");
                 return null;
             }
 

@@ -19,7 +19,7 @@ public class Gui extends JFrame {
         //Init
         F1C = F1manager;
         JButton button1 = new JButton("Generate Race");
-        JButton button2 = new JButton("Generate Race With Intial positions");
+        JButton button2 = new JButton("Generate Race With Initial positions");
         JButton button3 = new JButton("Search By Name");
         JTextField input = new JTextField();
         JTable mainTable;
@@ -28,7 +28,6 @@ public class Gui extends JFrame {
 
         //          Table Config
         String[] columns = new String[]{"Name","Team Name","First Positions","Second Positions","Third Positions","Total Points","Total Races","Location","Height","Age","Country of Origin"};
-//        Object[][] data = {{"John","Jeep","1","2","3","50","4","Sri lanka","180","20","Sri lanka"}};
         Object[][] data = {};
 
         tableModel = new DefaultTableModel(data,columns) {
@@ -91,25 +90,13 @@ public class Gui extends JFrame {
         // Race data code
         ArrayList<Race> races = F1C.getRaceList();
         JPanel racePanel = new JPanel();
-        racePanel.setLayout(new FlowLayout());
-        String[] raceColumn = new String[]{"Race Date"};
+
+        racePanel.setLayout(new BorderLayout());
+        String[] raceColumn = new String[]{"Race Date","1st place"};
         DefaultTableModel raceModel = new DefaultTableModel(raceColumn,0);
         JTable raceDateTable = new JTable(raceModel);
         updateRaceTable(raceModel);
-        racePanel.add(new JScrollPane(raceDateTable));
-
-//        // Race checkbox
-//        String[] raceDateStrings = new String[races.size()];
-//        for (int i=0;i<races.size();i++) {
-//            raceDateStrings[i] = races.get(i).getRaceDate();
-//        }
-//        JLabel jLabel = new JLabel(raceDateStrings[0]);
-//        racePanel.add(jLabel);
-
-
-
-
-
+        racePanel.add(new JScrollPane(raceDateTable),BorderLayout.CENTER);
         tabbedPane.add("Race panel",racePanel);
 
 
@@ -130,7 +117,6 @@ public class Gui extends JFrame {
         });
 
         button3.addActionListener(e -> newFilter(input,sorter));
-//        input.addActionListener(l -> System.out.println("works"));
 
 
     }
@@ -239,7 +225,8 @@ public class Gui extends JFrame {
         F1C.sortRaces();
         for (Race race : F1C.getRaceList()) {
             tableModel.addRow(new Object[] {
-                    race.getRaceDate()
+                    race.getRaceDate(),
+                    race.getRacePositions().get(0).getDriverName()
             });
         }
     }
@@ -250,24 +237,6 @@ public class Gui extends JFrame {
             tableModel.addRow(f1.formatForDriver());
         }
     }
-//    public double probabilityOnPosition(int position) {
-//        double num=0;
-//        switch(position) {
-//            case 1:
-//                num=0.4d;
-//                break;
-//            case 2:
-//                num=0.3d;
-//                break;
-//            case 3: case 4:
-//                num=0.1d;
-//                break;
-//            case 5:case 6:case 7:case 8:case 9:
-//                num=0.02d;
-//                break;
-//        }
-//        return num;
-//    }
     public int racePool() {
         int num =F1C.getDriverList().size();
         int out;

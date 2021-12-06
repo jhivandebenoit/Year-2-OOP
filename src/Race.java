@@ -18,9 +18,6 @@ public class Race implements Serializable {
         return raceDate;
     }
 
-    public void setRaceDate(LocalDate raceDate) {
-        this.raceDate = raceDate;
-    }
 
     public ArrayList<Formula1Driver> getRacePositions() {
         return this.racePositions;

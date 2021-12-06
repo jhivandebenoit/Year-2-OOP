@@ -8,13 +8,13 @@ public class Formula1Driver extends Driver implements Serializable {
     private int numberOfPoints;
     private int numberOfRaces;
     public Formula1Driver(String driverName, String location, String teamName, int height, int age,
-                          String countryOfOrigin, int firstPositions, int secondPositions, int thirdPositions, int numberOfPoints, int numberOfRaces) {
+                          String countryOfOrigin) {
         super(driverName, location, teamName, height, age, countryOfOrigin);
-        this.firstPositions = firstPositions;
-        this.secondPositions = secondPositions;
-        this.thirdPositions = thirdPositions;
-        this.numberOfPoints = numberOfPoints;
-        this.numberOfRaces = numberOfRaces;
+        this.firstPositions = 0;
+        this.secondPositions = 0;
+        this.thirdPositions = 0;
+        this.numberOfPoints = 0;
+        this.numberOfRaces = 0;
     }
 
 

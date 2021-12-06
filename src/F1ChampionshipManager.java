@@ -54,15 +54,10 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
         }
     }
     public void displayDrivers() {
-        int count = 0;
-
-        System.out.format("%-15s%-15s\n","Name","Count");
+        System.out.format("%-30s%-25s\n","Driver Name","Team Name");
         for (Formula1Driver driver : driverList) {
 
-            System.out.format("%-15s%-15s\n",driver.getDriverName(),count);
-
-//            System.out.println("Name: " + driver.getDriverName() + "| " +count);
-            count++;
+            System.out.format("%-30s%-25s\n",driver.getDriverName(),driver.getTeamName());
         }
     }
     public void assignPoints(Race race) {
@@ -162,8 +157,8 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
         }
     }
     public void sortRaces() {
-        Collections.sort(races, (race1,race2)->race1.getRaceDate().compareTo(race2.getRaceDate()));
-//        races.sort(Comparator.comparing(Race::getRaceDate));
+//        Collections.sort(races, (race1,race2)->race1.getRaceDate().compareTo(race2.getRaceDate()));
+        races.sort(Comparator.comparing(Race::getRaceDate));
     }
     public ArrayList<Race> getRaceList() {
         return races;
