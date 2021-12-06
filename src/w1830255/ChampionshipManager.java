@@ -1,3 +1,5 @@
+package w1830255;
+
 public interface ChampionshipManager {
 
     void addToChampionship(Driver driver);

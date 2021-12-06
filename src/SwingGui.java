@@ -1,11 +1,12 @@
+import w1830255.F1ChampionshipManager;
+import w1830255.Formula1Driver;
+import w1830255.Race;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableRowSorter;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.time.LocalDate;
 import java.util.ArrayList;;
 
 public class SwingGui extends JFrame{
@@ -15,7 +16,7 @@ public class SwingGui extends JFrame{
 
 
 
-    public SwingGui(String Title,F1ChampionshipManager F1C) {
+    public SwingGui(String Title, F1ChampionshipManager F1C) {
         super(Title);
         this.setSize(1200,800);
         this.setLocation(100,100);
@@ -25,8 +26,8 @@ public class SwingGui extends JFrame{
         //Drivers code
 //        Buttons
 
-        JButton button3 = new JButton("Generate Race");
-        JButton button4 = new JButton("Generate Race MOd");
+        JButton button3 = new JButton("Generate w1830255.Race");
+        JButton button4 = new JButton("Generate w1830255.Race MOd");
 
         JButton button7 = new JButton("Search By Name");
 
@@ -151,15 +152,15 @@ public class SwingGui extends JFrame{
         bottomPanel.add(button3);
         bottomPanel.add(button4);
 
-        tabbedPane.add("Driver's tab",mainContainer);
+        tabbedPane.add("w1830255.Driver's tab",mainContainer);
         add(tabbedPane);
 
-        // Race data code
+        // w1830255.Race data code
         ArrayList<Race> races = F1C.getRaceList();
         JPanel racePanel = new JPanel();
         racePanel.setLayout(new FlowLayout());
 
-//        // Race checkbox
+//        // w1830255.Race checkbox
 //        String[] raceDateStrings = new String[races.size()];
 //        for (int i=0;i<races.size();i++) {
 //            raceDateStrings[i] = races.get(i).getRaceDate();
@@ -171,7 +172,7 @@ public class SwingGui extends JFrame{
 
 
 
-//        //          Singular Race information
+//        //          Singular w1830255.Race information
 //        JPanel tablePanel = new JPanel();
 //
 //        String[] columnsR = new String[]{"Name","Position"};
@@ -180,7 +181,7 @@ public class SwingGui extends JFrame{
 //
 //        DefaultTableModel tableModelR = new DefaultTableModel(data,columns);
 //        JTable mainTableR = new JTable(tableModel);
-//        for (Race race: F1C.getRaceList()) {
+//        for (w1830255.Race race: F1C.getRaceList()) {
 //            tableModel.addRow(new String[] {
 //                    race.getRaceDate()
 //            });
@@ -200,7 +201,7 @@ public class SwingGui extends JFrame{
 
 
 
-        tabbedPane.add("Race panel",racePanel);
+        tabbedPane.add("w1830255.Race panel",racePanel);
         button7.addActionListener(e -> newFilter(textField1,sorter));
         button3.addActionListener(e -> {
             mainContainer.remove(mainTable);
@@ -224,10 +225,10 @@ public class SwingGui extends JFrame{
         }
         TRS.setRowFilter(rf);
     }
-//    public Race newRace(ArrayList<Formula1Driver> drivers) {
+//    public w1830255.Race newRace(ArrayList<w1830255.Formula1Driver> drivers) {
 //
 //
-////        Race race = new Race("Random");
+////        w1830255.Race race = new w1830255.Race("Random");
 //        ArrayList<String> repeatCheck = new ArrayList<>();
 //        for (int i = 0;i<drivers.size();i++) {
 //            repeatCheck.add(Integer.toString(i+1));

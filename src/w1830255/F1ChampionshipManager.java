@@ -1,8 +1,7 @@
+package w1830255;
 
 import java.io.Serializable;
-import java.text.Normalizer;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Comparator;
 
 
@@ -38,7 +37,7 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
         System.out.println("D or 4 to display statistics for a driver");
         System.out.println("E or 5 to display information about championship");
         System.out.println("F or 6 to add race to championship");
-        System.out.println("G or 7 to Show Gui");
+        System.out.println("G or 7 to Show w1830255.Gui");
         System.out.println("H or 8 to show races");
         System.out.println("Z or EXT to exit");
 
@@ -57,7 +56,7 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
         return findDriver(name) !=null;
     }
     public void displayDrivers() {
-        System.out.format("%-30s%-25s\n","Driver Name","Team Name");
+        System.out.format("%-30s%-25s\n","w1830255.Driver Name","Team Name");
         for (Formula1Driver driver : driverList) {
 
             System.out.format("%-30s%-25s\n",driver.getDriverName(),driver.getTeamName());
@@ -105,7 +104,7 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
 
     @Override
     public void removeFromChampionship(String driverName) {
-//        ListIterator<Formula1Driver> iterator = driverList.listIterator();
+//        ListIterator<w1830255.Formula1Driver> iterator = driverList.listIterator();
 //        while (iterator.hasNext()) {
 //            if (iterator.next().getDriverName().equals(name)) {
 //                iterator.remove();
@@ -131,7 +130,7 @@ public class F1ChampionshipManager implements ChampionshipManager, Serializable 
         driverList.sort(new sortByPoints());
         Formula1Driver d = findDriver(driverName);
         if (!(d==null)) {
-            System.out.format("%-30s%-25s%-25s%-25s%-25s\n","Driver Name","Team Name","First Positions","Second Positions", "Third Positions");
+            System.out.format("%-30s%-25s%-25s%-25s%-25s\n","w1830255.Driver Name","Team Name","First Positions","Second Positions", "Third Positions");
             System.out.format("%-30s%-25s%-25s%-25s%-25s\n",d.getDriverName(),d.getTeamName(),d.getFirstPositions(),d.getSecondPositions(),d.getThirdPositions());
             return true;
         }

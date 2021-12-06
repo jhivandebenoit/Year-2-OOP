@@ -1,3 +1,5 @@
+package w1830255;
+
 import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.table.DefaultTableModel;
@@ -5,7 +7,6 @@ import javax.swing.table.TableRowSorter;
 import java.awt.*;
 import java.time.LocalDate;
 import java.util.*;
-import java.util.List;
 
 public class Gui extends JFrame {
     private F1ChampionshipManager F1C;
@@ -18,8 +19,8 @@ public class Gui extends JFrame {
         //Drivers code
         //Init
         F1C = F1manager;
-        JButton button1 = new JButton("Generate Race");
-        JButton button2 = new JButton("Generate Race With Initial positions");
+        JButton button1 = new JButton("Generate w1830255.Race");
+        JButton button2 = new JButton("Generate w1830255.Race With Initial positions");
         JButton button3 = new JButton("Search By Name");
         JTextField input = new JTextField();
         JTable mainTable;
@@ -83,21 +84,21 @@ public class Gui extends JFrame {
         bottomPanel.add(button1);
         bottomPanel.add(button2);
 
-        tabbedPane.add("Driver's tab",mainContainer);
+        tabbedPane.add("w1830255.Driver's tab",mainContainer);
         add(tabbedPane);
 
 
-        // Race data code
+        // w1830255.Race data code
         ArrayList<Race> races = F1C.getRaceList();
         JPanel racePanel = new JPanel();
 
         racePanel.setLayout(new BorderLayout());
-        String[] raceColumn = new String[]{"Race Date","1st place"};
+        String[] raceColumn = new String[]{"w1830255.Race Date","1st place"};
         DefaultTableModel raceModel = new DefaultTableModel(raceColumn,0);
         JTable raceDateTable = new JTable(raceModel);
         updateRaceTable(raceModel);
         racePanel.add(new JScrollPane(raceDateTable),BorderLayout.CENTER);
-        tabbedPane.add("Race panel",racePanel);
+        tabbedPane.add("w1830255.Race panel",racePanel);
 
 
 //        Onclick

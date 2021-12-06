@@ -1,7 +1,7 @@
+package w1830255;
 
 import java.io.*;
 import java.time.LocalDate;
-import java.util.Arrays;
 import java.util.Scanner;
 
 public class Main {
@@ -49,12 +49,12 @@ public class Main {
 
                     }
                     else {
-                        System.out.println("Driver not in championship");
+                        System.out.println("w1830255.Driver not in championship");
                     }
                     break;
                 case "4": case "D":
                     F1C.displayDrivers();
-                    System.out.println("Enter Driver Name");
+                    System.out.println("Enter w1830255.Driver Name");
                     String name = scanner.nextLine();
                     boolean extra  = F1C.displayStatisticsOfDriver(name);
                     String b = "";
@@ -101,7 +101,7 @@ public class Main {
     }
 
     private static Formula1Driver newF1Driver() {
-        System.out.println("Enter Driver Name");
+        System.out.println("Enter w1830255.Driver Name");
         String driverName = scanner.nextLine();
         System.out.println("Enter Drivers location");
         String location = scanner.nextLine();
@@ -120,7 +120,7 @@ public class Main {
 
     }
     private static Formula1Driver newF1Driver(String teamName) {
-        System.out.println("Enter Driver Name");
+        System.out.println("Enter w1830255.Driver Name");
         String driverName = scanner.nextLine();
         System.out.println("Enter Drivers location");
         String location = scanner.nextLine();
@@ -168,7 +168,7 @@ public class Main {
 
     }
     public static void  saveToFile(F1ChampionshipManager formula1) {
-        String filename = "f1.ser";
+        String filename = "./src/w1830255/f1.ser";
         try {
 //            Saving object in file
             FileOutputStream save = new FileOutputStream(filename);
@@ -186,9 +186,10 @@ public class Main {
         }
     }
     public static void readFromFile()  {
-//        F1ChampionshipManager  = null;
+//        w1830255.F1ChampionshipManager  = null;
         try {
-            FileInputStream file = new FileInputStream("f1.ser");
+            FileInputStream file = new FileInputStream("./src/w1830255/f1.ser");
+
             ObjectInputStream inputStream = new ObjectInputStream(file);
             F1C = (F1ChampionshipManager) inputStream.readObject();
             file.close();

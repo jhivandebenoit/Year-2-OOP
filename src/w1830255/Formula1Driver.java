@@ -1,3 +1,5 @@
+package w1830255;
+
 import java.io.Serializable;
 
 public class Formula1Driver extends Driver implements Serializable {
@@ -102,7 +104,7 @@ public class Formula1Driver extends Driver implements Serializable {
 
     @Override
     public String toString() {
-        return "Formula1Driver{" +
+        return "w1830255.Formula1Driver{" +
                 "Name" + super.getDriverName() +
                 ", numberOfPoints=" + numberOfPoints +
                 ", numberOfRaces=" + numberOfRaces +
